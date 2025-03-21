@@ -16,8 +16,8 @@ BATCH_SIZE = 16
 EPOCHS = 50
 
 # Ścieżki do danych
-image_dir = 'path_to_images'  # Ścieżka do folderu z obrazami
-mask_dir = 'path_to_masks'    # Ścieżka do folderu z maskami
+image_dir = './DB1_B'  # Ścieżka do folderu z obrazami
+mask_dir = './DB1_B_MASKS'    # Ścieżka do folderu z maskami
 
 # Funkcja do wczytywania danych
 def load_data(image_dir, mask_dir, img_width, img_height):
