@@ -9,8 +9,8 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
 # Parametry
-IMG_WIDTH = 256
-IMG_HEIGHT = 256
+IMG_WIDTH = 480
+IMG_HEIGHT = 480
 IMG_CHANNELS = 1
 BATCH_SIZE = 16
 EPOCHS = 50
@@ -41,13 +41,17 @@ def load_data(image_dir, mask_dir, img_width, img_height):
         
         images.append(img)
         masks.append(mask)
-    
+    images = np.expand_dims(images, axis=-1)  # Kształt: (liczba_obrazów, height, width, 1)
+    masks = np.expand_dims(masks, axis=-1)
     return np.array(images), np.array(masks)
 
 # Wczytanie danych
 images, masks = load_data(image_dir, mask_dir, IMG_WIDTH, IMG_HEIGHT)
 images = np.expand_dims(images, axis=-1)  # Dodanie kanału dla obrazów
 masks = np.expand_dims(masks, axis=-1)    # Dodanie kanału dla masek
+
+print("Shape of images:", images.shape)
+print("Shape of masks:", masks.shape)
 
 # Podział na zbiór treningowy i walidacyjny
 X_train, X_val, y_train, y_val = train_test_split(images, masks, test_size=0.2, random_state=42)
